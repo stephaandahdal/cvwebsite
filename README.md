@@ -1,12 +1,15 @@
 # CV Website
 
-A fast, responsive, and sleek professional CV website with dark/light mode toggle and a cursor-following light effect.
+A fast, responsive, and sleek professional CV website with dark/light mode toggle and animated blob background effects.
+
+🌐 **Live Website**: [https://stephaandahdal.github.io/cvwebsite/](https://stephaandahdal.github.io/cvwebsite/)
 
 ## Features
 
 - ✨ **Modern Design**: Clean, professional layout with smooth animations
 - 🌓 **Dark/Light Mode**: Toggle between themes with persistent preference
-- 💡 **Cursor Light Effect**: Interactive light that follows your cursor
+- 🎨 **Animated Blob Background**: Smooth, morphing blob animations with green theme
+- 🔄 **Particle System Option**: Switchable background between blob morphing and interactive particle system
 - 📱 **Fully Responsive**: Optimized for all device sizes
 - ⚡ **Fast Performance**: Lightweight and optimized for speed
 - 🚀 **GitHub Pages Ready**: Easy deployment via GitHub Actions
@@ -53,7 +56,7 @@ git push -u origin main
    - The workflow will automatically deploy on every push to `main`
 
 3. Your site will be available at:
-   `https://stephaandahdal.github.io/cvwebsite/`
+   [https://stephaandahdal.github.io/cvwebsite/](https://stephaandahdal.github.io/cvwebsite/)
 
 ### Method 2: Using GitHub Pages Settings
 
@@ -84,7 +87,7 @@ git push -u origin main
    - Animations
 
 3. **Functionality**: Adjust `script.js` for:
-   - Cursor light intensity and size
+   - Background type (blob or particle system)
    - Animation speeds
    - Additional interactive features
 
@@ -97,7 +100,19 @@ The color scheme is defined using CSS variables in `styles.css`. You can easily 
 - `--text-primary`: Main text color
 - `--text-secondary`: Secondary text color
 - `--accent`: Accent color (links, highlights)
-- `--cursor-light`: Cursor light effect color
+- `--accent-gradient`: Gradient for accents and highlights
+
+### Background Options
+
+You can switch between two background types in `script.js`:
+
+- **Blob Morphing** (default): Smooth, organic blob animations
+- **Particle System**: Interactive particle network with connections
+
+Change the `BACKGROUND_TYPE` constant in `script.js`:
+```javascript
+const BACKGROUND_TYPE = 'blob'; // Change to 'particles' to switch
+```
 
 ## Browser Support
 
@@ -110,8 +125,9 @@ The color scheme is defined using CSS variables in `styles.css`. You can easily 
 
 - Optimized CSS with minimal dependencies
 - Vanilla JavaScript (no frameworks)
-- Efficient animations using `requestAnimationFrame`
+- Efficient animations using `requestAnimationFrame` and CSS animations
 - Lazy loading and intersection observers for smooth scrolling
+- Canvas-based particle system for optimal performance
 
 ## License
 
