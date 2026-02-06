@@ -22,70 +22,56 @@ function updateThemeIcon(theme) {
     themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
-// Cursor Light Effect
+// Cursor Light Effect - Sunlight Background, Smooth & Fluid
 const cursorLight = document.getElementById('cursorLight');
-let mouseX = 0;
-let mouseY = 0;
-let lightX = 0;
-let lightY = 0;
-let isMouseMoving = false;
-let mouseMoveTimeout;
+const root = document.documentElement;
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let lightX = window.innerWidth / 2;
+let lightY = window.innerHeight / 2;
+let isAnimating = true;
 
 // Track mouse position
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    
-    // Show cursor light
-    if (!isMouseMoving) {
-        cursorLight.classList.add('active');
-        isMouseMoving = true;
-    }
-    
-    // Hide cursor light after mouse stops moving
-    clearTimeout(mouseMoveTimeout);
-    mouseMoveTimeout = setTimeout(() => {
-        cursorLight.classList.remove('active');
-        isMouseMoving = false;
-    }, 1000);
-    
-    // Smooth animation using requestAnimationFrame
-    animateCursorLight();
 });
 
-// Smooth cursor light animation
+// Smooth cursor light animation - sunlight flowing effect
 function animateCursorLight() {
-    // Easing function for smooth movement
-    const ease = 0.15;
-    lightX += (mouseX - lightX) * ease;
-    lightY += (mouseY - lightY) * ease;
+    // Very smooth easing for fluid, sunlight-like movement
+    const ease = 0.08; // Lower value = smoother, more fluid movement
     
-    cursorLight.style.left = lightX + 'px';
-    cursorLight.style.top = lightY + 'px';
+    // Calculate distance and direction
+    const dx = mouseX - lightX;
+    const dy = mouseY - lightY;
     
-    if (isMouseMoving) {
+    // Apply smooth easing with slight momentum
+    lightX += dx * ease;
+    lightY += dy * ease;
+    
+    // Convert to percentage for CSS gradient (this fixes alignment)
+    const lightXPercent = (lightX / window.innerWidth) * 100;
+    const lightYPercent = (lightY / window.innerHeight) * 100;
+    
+    // Update CSS variable for background gradient position
+    root.style.setProperty('--light-x-percent', lightXPercent + '%');
+    root.style.setProperty('--light-y-percent', lightYPercent + '%');
+    
+    // Continue animation loop
+    if (isAnimating) {
         requestAnimationFrame(animateCursorLight);
     }
 }
 
-// Hide cursor light when mouse leaves the window
-document.addEventListener('mouseleave', () => {
-    cursorLight.classList.remove('active');
-    isMouseMoving = false;
-});
-
-// Show cursor light when mouse enters the window
-document.addEventListener('mouseenter', () => {
-    if (mouseX !== 0 || mouseY !== 0) {
-        cursorLight.classList.add('active');
-    }
-});
+// Start animation loop immediately
+animateCursorLight();
 
 // Initialize cursor light position
-cursorLight.style.left = '50%';
-cursorLight.style.top = '50%';
-lightX = window.innerWidth / 2;
-lightY = window.innerHeight / 2;
+const initialXPercent = (lightX / window.innerWidth) * 100;
+const initialYPercent = (lightY / window.innerHeight) * 100;
+root.style.setProperty('--light-x-percent', initialXPercent + '%');
+root.style.setProperty('--light-y-percent', initialYPercent + '%');
 
 // Update current year in footer
 document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -127,20 +113,13 @@ document.querySelectorAll('.section').forEach(section => {
     observer.observe(section);
 });
 
-// Performance optimization: Reduce cursor light updates on mobile
-if (window.innerWidth <= 768) {
-    // Reduce cursor light size on mobile
-    cursorLight.style.width = '200px';
-    cursorLight.style.height = '200px';
-}
-
-// Handle window resize
+// Update light position on window resize
 window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) {
-        cursorLight.style.width = '200px';
-        cursorLight.style.height = '200px';
-    } else {
-        cursorLight.style.width = '300px';
-        cursorLight.style.height = '300px';
-    }
+    // Recalculate center position
+    if (lightX > window.innerWidth) lightX = window.innerWidth / 2;
+    if (lightY > window.innerHeight) lightY = window.innerHeight / 2;
+    const lightXPercent = (lightX / window.innerWidth) * 100;
+    const lightYPercent = (lightY / window.innerHeight) * 100;
+    root.style.setProperty('--light-x-percent', lightXPercent + '%');
+    root.style.setProperty('--light-y-percent', lightYPercent + '%');
 });
