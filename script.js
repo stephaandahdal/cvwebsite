@@ -22,57 +22,6 @@ function updateThemeIcon(theme) {
     themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
-// Cursor Light Effect - Sunlight Background, Smooth & Fluid
-const cursorLight = document.getElementById('cursorLight');
-const root = document.documentElement;
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let lightX = window.innerWidth / 2;
-let lightY = window.innerHeight / 2;
-let isAnimating = true;
-
-// Track mouse position
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
-// Smooth cursor light animation - sunlight flowing effect
-function animateCursorLight() {
-    // Very smooth easing for fluid, sunlight-like movement
-    const ease = 0.08; // Lower value = smoother, more fluid movement
-    
-    // Calculate distance and direction
-    const dx = mouseX - lightX;
-    const dy = mouseY - lightY;
-    
-    // Apply smooth easing with slight momentum
-    lightX += dx * ease;
-    lightY += dy * ease;
-    
-    // Convert to percentage for CSS gradient (this fixes alignment)
-    const lightXPercent = (lightX / window.innerWidth) * 100;
-    const lightYPercent = (lightY / window.innerHeight) * 100;
-    
-    // Update CSS variable for background gradient position
-    root.style.setProperty('--light-x-percent', lightXPercent + '%');
-    root.style.setProperty('--light-y-percent', lightYPercent + '%');
-    
-    // Continue animation loop
-    if (isAnimating) {
-        requestAnimationFrame(animateCursorLight);
-    }
-}
-
-// Start animation loop immediately
-animateCursorLight();
-
-// Initialize cursor light position
-const initialXPercent = (lightX / window.innerWidth) * 100;
-const initialYPercent = (lightY / window.innerHeight) * 100;
-root.style.setProperty('--light-x-percent', initialXPercent + '%');
-root.style.setProperty('--light-y-percent', initialYPercent + '%');
-
 // Update current year in footer
 document.getElementById('currentYear').textContent = new Date().getFullYear();
 
@@ -113,13 +62,153 @@ document.querySelectorAll('.section').forEach(section => {
     observer.observe(section);
 });
 
-// Update light position on window resize
+// Update on window resize
 window.addEventListener('resize', () => {
-    // Recalculate center position
-    if (lightX > window.innerWidth) lightX = window.innerWidth / 2;
-    if (lightY > window.innerHeight) lightY = window.innerHeight / 2;
-    const lightXPercent = (lightX / window.innerWidth) * 100;
-    const lightYPercent = (lightY / window.innerHeight) * 100;
-    root.style.setProperty('--light-x-percent', lightXPercent + '%');
-    root.style.setProperty('--light-y-percent', lightYPercent + '%');
+    // Resize particle canvas
+    const canvas = document.getElementById('particleCanvas');
+    if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
 });
+
+// Background Toggle: Change this to 'blob' or 'particles'
+const BACKGROUND_TYPE = 'blob'; // Change to 'particles' to switch
+
+function initBackground() {
+    const blobBackground = document.getElementById('blobBackground');
+    const particleCanvas = document.getElementById('particleCanvas');
+    
+    if (!blobBackground || !particleCanvas) {
+        console.warn('Background elements not found');
+        return;
+    }
+    
+    // Initialize background based on type
+    if (BACKGROUND_TYPE === 'particles') {
+        blobBackground.classList.add('hidden');
+        particleCanvas.classList.add('active');
+        initParticleSystem();
+    } else {
+        blobBackground.classList.remove('hidden');
+        particleCanvas.classList.remove('active');
+    }
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBackground);
+} else {
+    initBackground();
+}
+
+// Particle System
+function initParticleSystem() {
+    const canvas = document.getElementById('particleCanvas');
+    
+    if (!canvas) {
+        console.warn('Particle canvas not found');
+        return;
+    }
+    
+    const ctx = canvas.getContext('2d');
+    
+    if (!ctx) {
+        console.warn('Could not get canvas context');
+        return;
+    }
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = 80;
+    const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    
+    // Particle class
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 3 + 1;
+            this.speedX = Math.random() * 2 - 1;
+            this.speedY = Math.random() * 2 - 1;
+            this.opacity = Math.random() * 0.5 + 0.2;
+        }
+        
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            
+            // Wrap around edges
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0) this.y = canvas.height;
+            
+            // Attract to mouse
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 150) {
+                this.x += (dx / distance) * 0.5;
+                this.y += (dy / distance) * 0.5;
+            }
+        }
+        
+        draw() {
+            ctx.fillStyle = `rgba(0, 217, 126, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+    
+    // Create particles
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+    
+    // Update mouse position
+    document.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+    
+    // Draw connections
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 120) {
+                    ctx.strokeStyle = `rgba(0, 217, 126, ${0.2 * (1 - distance / 120)})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    
+    // Animation loop
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        drawConnections();
+        
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+}
