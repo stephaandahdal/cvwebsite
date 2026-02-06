@@ -17,7 +17,7 @@ A fast, responsive, and sleek professional CV website with dark/light mode toggl
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/steph aandahdal/cvwebsite.git
+git clone https://github.com/stephaandahdal/cvwebsite.git
 cd cvwebsite
 ```
 
@@ -42,7 +42,7 @@ git init
 git add .
 git commit -m "Initial commit"
 git branch -M main
-git remote add origin https://github.com/steph aandahdal/cvwebsite.git
+git remote add origin https://github.com/stephaandahdal/cvwebsite.git
 git push -u origin main
 ```
 
@@ -53,7 +53,7 @@ git push -u origin main
    - The workflow will automatically deploy on every push to `main`
 
 3. Your site will be available at:
-   `https://steph aandahdal.github.io/cvwebsite/`
+   `https://stephaandahdal.github.io/cvwebsite/`
 
 ### Method 2: Using GitHub Pages Settings
 
