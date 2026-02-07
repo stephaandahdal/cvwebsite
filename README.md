@@ -1,18 +1,29 @@
 # CV Website
 
-A fast, responsive, and sleek professional CV website with dark/light mode toggle and animated blob background effects.
+A modern, responsive professional CV website featuring smooth scroll animations, dark/light mode toggle, and a clean, professional design.
 
 🌐 **Live Website**: [https://stephaandahdal.github.io/cvwebsite/](https://stephaandahdal.github.io/cvwebsite/)
 
 ## Features
 
-- ✨ **Modern Design**: Clean, professional layout with smooth animations
+- ✨ **Modern Design**: Clean, professional layout with smooth scroll animations
 - 🌓 **Dark/Light Mode**: Toggle between themes with persistent preference
-- 🎨 **Animated Blob Background**: Smooth, morphing blob animations with green theme
+- 🎨 **Animated Blob Background**: Smooth, morphing blob animations with green accent theme
 - 🔄 **Particle System Option**: Switchable background between blob morphing and interactive particle system
 - 📱 **Fully Responsive**: Optimized for all device sizes
-- ⚡ **Fast Performance**: Lightweight and optimized for speed
+- ⚡ **Fast Performance**: Lightweight vanilla JavaScript, no frameworks
 - 🚀 **GitHub Pages Ready**: Easy deployment via GitHub Actions
+- 🎯 **Smooth Scroll Animations**: Professional Intersection Observer-based animations
+- 📸 **Headshot Support**: Placeholder for professional headshot photo
+- 📄 **PDF Integration**: Support for Dean's List certificates and resume PDFs
+
+## Sections
+
+- **About**: Personal introduction and background
+- **Education**: Degree information, coursework, achievements, and Dean's List certificates
+- **Experience**: Professional work experience with timeline layout
+- **Skills**: Organized by categories (Programming Languages, Frontend, Backend, Tools, Other)
+- **Projects**: Showcase of key projects with descriptions and links
 
 ## Getting Started
 
@@ -75,20 +86,33 @@ git push -u origin main
 ### Update Your Information
 
 1. **Personal Details**: Edit `index.html` to update:
-   - Name and tagline
-   - Social media links (GitHub, LinkedIn, Email)
+   - Name, tagline, and location
+   - Social media links (GitHub, LinkedIn, Email, Resume PDF)
    - About section
-   - Experience, Education, Skills, Projects
+   - Education details and Dean's List certificates
+   - Experience entries
+   - Skills and categories
+   - Projects with descriptions and links
 
-2. **Styling**: Modify `styles.css` to customize:
-   - Colors and themes
+2. **Headshot Photo**: 
+   - Add your headshot image to the `images/` folder
+   - Update the `src` attribute in `index.html` (line ~78) to point to your image
+   - Example: `src="images/headshot.jpg"`
+
+3. **PDF Files**:
+   - Add Dean's List PDFs to the `pdfs/` folder
+   - Update the `href` attributes in the Dean's List buttons
+   - Add your resume PDF and update the resume link in the header
+
+4. **Styling**: Modify `styles.css` to customize:
+   - Colors and themes (CSS variables)
    - Fonts and typography
    - Spacing and layout
-   - Animations
+   - Animations and transitions
 
-3. **Functionality**: Adjust `script.js` for:
+5. **Functionality**: Adjust `script.js` for:
    - Background type (blob or particle system)
-   - Animation speeds
+   - Animation speeds and effects
    - Additional interactive features
 
 ### Theme Customization
@@ -99,8 +123,10 @@ The color scheme is defined using CSS variables in `styles.css`. You can easily 
 - `--bg-secondary`: Secondary background (cards, sections)
 - `--text-primary`: Main text color
 - `--text-secondary`: Secondary text color
-- `--accent`: Accent color (links, highlights)
+- `--accent`: Accent color (links, highlights) - currently green (#00d97e)
 - `--accent-gradient`: Gradient for accents and highlights
+- `--border`: Border colors
+- `--shadow`: Shadow colors
 
 ### Background Options
 
@@ -112,6 +138,22 @@ You can switch between two background types in `script.js`:
 Change the `BACKGROUND_TYPE` constant in `script.js`:
 ```javascript
 const BACKGROUND_TYPE = 'blob'; // Change to 'particles' to switch
+```
+
+## File Structure
+
+```
+cvwebsite/
+├── index.html          # Main HTML file
+├── styles.css          # All styling and themes
+├── script.js           # JavaScript functionality
+├── images/             # Headshot and other images
+├── pdfs/               # Dean's List certificates and resume PDFs
+├── .github/
+│   └── workflows/
+│       └── deploy.yml  # GitHub Actions deployment
+├── .gitignore
+└── README.md
 ```
 
 ## Browser Support
@@ -126,8 +168,17 @@ const BACKGROUND_TYPE = 'blob'; // Change to 'particles' to switch
 - Optimized CSS with minimal dependencies
 - Vanilla JavaScript (no frameworks)
 - Efficient animations using `requestAnimationFrame` and CSS animations
-- Lazy loading and intersection observers for smooth scrolling
+- Intersection Observer for smooth scroll animations
+- Respects `prefers-reduced-motion` for accessibility
 - Canvas-based particle system for optimal performance
+
+## Accessibility
+
+- Semantic HTML structure
+- ARIA labels for interactive elements
+- Keyboard navigation support
+- Respects user's motion preferences
+- High contrast support in both themes
 
 ## License
 
@@ -137,6 +188,7 @@ This project is open source and available under the MIT License.
 
 - Font: [Inter](https://fonts.google.com/specimen/Inter) by Google Fonts
 - Icons: Custom SVG icons
+- Design inspiration: Stripe-inspired clean design
 
 ---
 

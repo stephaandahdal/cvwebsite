@@ -25,6 +25,30 @@ function updateThemeIcon(theme) {
 // Update current year in footer
 document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+// Handle headshot image loading
+const headshot = document.getElementById('headshot');
+const headshotPlaceholder = document.getElementById('headshot-placeholder');
+
+if (headshot && headshotPlaceholder) {
+    // Show image when loaded, hide placeholder
+    headshot.addEventListener('load', () => {
+        headshot.style.display = 'block';
+        headshotPlaceholder.style.display = 'none';
+    });
+    
+    // Show placeholder if image fails to load or has no src
+    headshot.addEventListener('error', () => {
+        headshot.style.display = 'none';
+        headshotPlaceholder.style.display = 'flex';
+    });
+    
+    // Check if image has a valid src on page load
+    if (headshot.src && headshot.src !== window.location.href) {
+        headshot.style.display = 'block';
+        headshotPlaceholder.style.display = 'none';
+    }
+}
+
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -39,28 +63,74 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for fade-in animations (optional enhancement)
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Professional Scroll Animations with Intersection Observer
+(function initScrollAnimations() {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+        // Skip animations if user prefers reduced motion
+        return;
+    }
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
+    // Intersection Observer options - industry standard settings
+    const observerOptions = {
+        threshold: 0.15, // Trigger when 15% of element is visible
+        rootMargin: '0px 0px -10% 0px' // Start animation slightly before element enters viewport
+    };
+
+    // Create observer instance
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                // Unobserve after animation to improve performance
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Initialize sections with fade-in-up animation
+    document.querySelectorAll('.section').forEach((section, index) => {
+        section.classList.add('scroll-animate', 'fade-in-up');
+        observer.observe(section);
     });
-}, observerOptions);
 
-// Observe all sections for fade-in effect
-document.querySelectorAll('.section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(section);
-});
+    // Animate timeline items with staggered delays
+    document.querySelectorAll('.timeline-item').forEach((item, index) => {
+        item.classList.add('scroll-animate', 'fade-in-up', `stagger-${(index % 5) + 1}`);
+        observer.observe(item);
+    });
+
+    // Animate project cards with scale-in effect
+    document.querySelectorAll('.project-card').forEach((card, index) => {
+        card.classList.add('scroll-animate', 'scale-in', `stagger-${(index % 3) + 1}`);
+        observer.observe(card);
+    });
+
+    // Animate skill categories
+    document.querySelectorAll('.skill-category').forEach((category, index) => {
+        category.classList.add('scroll-animate', 'fade-in-up', `stagger-${(index % 3) + 1}`);
+        observer.observe(category);
+    });
+
+    // Animate education items
+    document.querySelectorAll('.education-item').forEach((item, index) => {
+        item.classList.add('scroll-animate', 'fade-in-up');
+        observer.observe(item);
+    });
+
+    // Animate skill tags with slight delay for visual interest
+    document.querySelectorAll('.skill-tag').forEach((tag, index) => {
+        tag.classList.add('scroll-animate', 'fade-in');
+        const staggerIndex = (index % 6) + 1;
+        tag.classList.add(`stagger-${Math.min(staggerIndex, 5)}`);
+        observer.observe(tag);
+    });
+
+    // Header elements should remain visible immediately (they have CSS animations)
+    // No scroll animation needed for header
+})();
 
 // Update on window resize
 window.addEventListener('resize', () => {

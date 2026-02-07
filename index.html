@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Stephaan Dahdal - Professional CV Website">
-    <title>Stephaan Dahdal | CV</title>
+    <title>Stephaan Dahdal</title>
     <link rel="stylesheet" href="styles.css?v=12">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,9 +33,18 @@
         <!-- Header Section -->
         <header class="header">
             <div class="header-content">
-                <h1 class="name">Stephaan Dahdal</h1>
-                <p class="tagline">Your Super Duper Professional Tagline Here</p>
-                <div class="social-links">
+                <div class="header-text">
+                    <h1 class="name">Stephaan Dahdal</h1>
+                    <p class="tagline">Computer Science Senior at ASU | Entry-Level Software Engineer | Web Development & Database Systems</p>
+                    <div class="location">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span>Phoenix, AZ</span>
+                    </div>
+                    <div class="social-links">
                     <a href="https://github.com/stephaandahdal" target="_blank" rel="noopener noreferrer" class="social-link">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
@@ -54,6 +63,26 @@
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
                     </a>
+                    <a href="pdfs/MyResume.pdf" target="_blank" rel="noopener noreferrer" class="social-link" id="resume-link" aria-label="Download Resume PDF">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </a>
+                    </div>
+                </div>
+                <!-- Headshot: Replace empty src with your headshot image path (e.g., "images/headshot.jpg") -->
+                <div class="header-image">
+                    <div class="headshot-placeholder" id="headshot-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <img src="" alt="Stephaan Dahdal" class="headshot" id="headshot" style="display: none;">
                 </div>
             </div>
         </header>
@@ -63,20 +92,80 @@
             <!-- About Section -->
             <section class="section">
                 <h2 class="section-title">About</h2>
-                <p class="section-content">
-                    Write a compelling about section here. Describe your professional background, 
-                    interests, and what makes you unique. This is your chance to make a great first impression.
-                </p>
+                <div class="section-content">
+                    <p>I'm a Computer Science senior at Arizona State University with ample experience in full-stack web development and database systems. Through academic and team-based projects, I've gained hands-on experience building web applications that connect front-end interfaces with secure backends and data storage.</p>
+                    <p>One of my strongest endeavors was a team project where we developed a full-stack food tracking and health forum platform designed to support communication between doctors and patients. Working in a collaborative environment helped sharpen not only my technical skills, but my ability to prioritize teamwork, break down problems, and adapt to new challenges in a group environment.</p>
+                    <p>I'm actively seeking entry-level or new-grad software engineering/tech opportunities where I can continue learning, building lasting applications, and leaving a tangible impact every step in my career.</p>
+                    <p>Fluent in English and Arabic.</p>
+                </div>
             </section>
 
             <!-- Education Section -->
             <section class="section">
                 <h2 class="section-title">Education</h2>
                 <div class="education-item">
-                    <h3 class="education-degree">Degree Name</h3>
-                    <p class="education-institution">University Name</p>
-                    <p class="education-date">Year - Year</p>
-                    <p class="education-description">Relevant coursework, achievements, or honors.</p>
+                    <h3 class="education-degree">Bachelor of Science in Computer Science</h3>
+                    <p class="education-institution">Arizona State University</p>
+                    <p class="education-date">August 2022 - May 2026</p>
+                    <div class="education-description">
+                        <p><strong>Relevant Coursework:</strong> Data Structures and Algorithms, Object-Oriented Programming, Operating Systems, Distributed Software Development, Database Management, Software Quality Assurance, Web Development</p>
+                        <p><strong>Achievements:</strong> Fall 2023 Fulton Engineering Pitch Deck Competition Runner-Up</p>
+                        <div class="deans-list-container">
+                            <strong>Dean's List:</strong>
+                            <div class="deans-list-buttons">
+                                <a href="pdfs/DeanF22.pdf" class="deans-list-button" target="_blank" rel="noopener noreferrer">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    <span>Fall 2022</span>
+                                </a>
+                                <a href="pdfs/DeanS23.pdf" class="deans-list-button" target="_blank" rel="noopener noreferrer">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    <span>Spring 2023</span>
+                                </a>
+                                <a href="pdfs/DeanF23.pdf" class="deans-list-button" target="_blank" rel="noopener noreferrer">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    <span>Fall 2023</span>
+                                </a>
+                                <a href="pdfs/DeanS25.pdf" class="deans-list-button" target="_blank" rel="noopener noreferrer">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    <span>Spring 2025</span>
+                                </a>
+                                <a href="pdfs/DeanF25.pdf" class="deans-list-button" target="_blank" rel="noopener noreferrer">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    <span>Fall 2025</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -87,24 +176,27 @@
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
-                            <h3 class="timeline-title">Job Title</h3>
-                            <p class="timeline-company">Company Name</p>
-                            <p class="timeline-date">Month Year - Present</p>
-                            <p class="timeline-description">
-                                Describe your responsibilities and achievements in this role. 
-                                Use bullet points or paragraphs to highlight key accomplishments.
-                            </p>
+                            <h3 class="timeline-title">Software Engineering Intern</h3>
+                            <p class="timeline-company">Benessere North | Ontario, CA (Remote)</p>
+                            <p class="timeline-date">August 2025 - Present</p>
+                            <ul class="timeline-description">
+                                <li>Developed a web app where users can receive doctor feedback about meal plans and health/pain metrics, with meal logging, health metrics tracking, and progress visualization.</li>
+                                <li>Built a HIPAA-aligned web app (mobile and desktop) using SvelteKit and TailwindCSS for both patients and providers.</li>
+                                <li>Designed encrypted data models, roles, meal/audit logging, and Cloudflare integration.</li>
+                            </ul>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
-                            <h3 class="timeline-title">Previous Job Title</h3>
-                            <p class="timeline-company">Previous Company</p>
-                            <p class="timeline-date">Month Year - Month Year</p>
-                            <p class="timeline-description">
-                                Describe your previous role and what you accomplished there.
-                            </p>
+                            <h3 class="timeline-title">Customer Sales Expert</h3>
+                            <p class="timeline-company">AutoZone | Phoenix, AZ</p>
+                            <p class="timeline-date">June 2024 - Present</p>
+                            <ul class="timeline-description">
+                                <li>Assisted customers by diagnosing issues and recommending appropriate products, strengthening problem-solving and communication skills.</li>
+                                <li>Collaborated with team members to manage inventory, prioritize tasks, and maintain efficient store operations in a fast-paced environment.</li>
+                                <li>Communicated technical information clearly to customers with varying levels of knowledge.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -117,19 +209,48 @@
                     <div class="skill-category">
                         <h3 class="skill-category-title">Programming Languages</h3>
                         <div class="skill-tags">
-                            <span class="skill-tag">JavaScript</span>
                             <span class="skill-tag">Python</span>
                             <span class="skill-tag">TypeScript</span>
-                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">C/C++</span>
+                            <span class="skill-tag">C#</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3 class="skill-category-title">Frameworks & Tools</h3>
+                        <h3 class="skill-category-title">Frontend</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">React</span>
+                            <span class="skill-tag">Next.js</span>
+                            <span class="skill-tag">Svelte</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Backend</h3>
+                        <div class="skill-tags">
                             <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Supabase</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Tools</h3>
+                        <div class="skill-tags">
                             <span class="skill-tag">Git</span>
-                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">Cloudflare</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Other</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                            <span class="skill-tag">Excel</span>
+                            <span class="skill-tag">CAD</span>
                         </div>
                     </div>
                 </div>
@@ -140,23 +261,24 @@
                 <h2 class="section-title">Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <h3 class="project-title">Project Name</h3>
-                        <p class="project-description">
-                            Brief description of your project, technologies used, and key features.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" class="project-link">Live Demo</a>
-                            <a href="#" class="project-link">GitHub</a>
-                        </div>
+                        <h3 class="project-title">Full-Stack Healthcare & Wellness Tracking Platform | Capstone Team</h3>
+                        <p class="project-date">August 2025 - Present</p>
+                        <ul class="project-description">
+                            <li>Designed and implemented a full-stack healthcare web application for tracking meals, symptoms, pain scores, and clinical health metrics.</li>
+                            <li>Developed responsive, accessible UI components with Svelte + TailwindCSS + DaisyUI, including modal views and image uploads.</li>
+                            <li>Collaborated using Git feature branches, pull requests, and code reviews, resolving merge conflicts and keeping branches in sync.</li>
+                            <li>Implemented secure authentication and role-based access control (user / admin / provider) using Auth.js and server-side middleware.</li>
+                        </ul>
                     </div>
                     <div class="project-card">
-                        <h3 class="project-title">Another Project</h3>
+                        <h3 class="project-title">Personal CV Website</h3>
+                        <p class="project-date">2026</p>
                         <p class="project-description">
-                            Another project description highlighting your skills and creativity.
+                            A simple, responsive personal portfolio website showcasing my experience, skills, and projects. Built with HTML, CSS, and JavaScript, featuring smooth scroll animations, dark/light theme toggle, and a clean, professional UI.
                         </p>
                         <div class="project-links">
                             <a href="#" class="project-link">Live Demo</a>
-                            <a href="#" class="project-link">GitHub</a>
+                            <a href="https://github.com/stephaandahdal/cvwebsite" target="_blank" rel="noopener noreferrer" class="project-link">GitHub</a>
                         </div>
                     </div>
                 </div>
